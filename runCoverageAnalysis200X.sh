@@ -15,17 +15,17 @@ for i in `find chr* -name "truseqCoverage.bed" -printf "%h\n"`; do
 	python  /home/yqin/Pipeline/Orion_QC/PIPELINE/DNA-seq-0.1.3/runOnTruSeqCoverage.py $i $CURRENT
 	
 	total=`egrep "^$i\W" $i/truseqCoverage.bed | cut -f9 | uniq | awk '{sum1 += $1} END {print sum1}'`
-   t0=`egrep "^$i\W" $i/truseqCoverage.bed | awk -v total=$total '$7==0 {sum1 += $8} END {print sum1/total}'`
-   t1=`egrep "^$i\W" $i/truseqCoverage.bed | awk -v total=$total '$7>=1 {sum1 += $8} END {print sum1/total}'`
-   t5=`egrep "^$i\W" $i/truseqCoverage.bed | awk -v total=$total '$7>=5 {sum1 += $8} END {print sum1/total}'`
-   t10=`egrep "^$i\W" $i/truseqCoverage.bed | awk -v total=$total '$7>=10 {sum1 += $8} END {print sum1/total}'`
-   t20=`egrep "^$i\W" $i/truseqCoverage.bed | awk -v total=$total '$7>=20 {sum1 += $8} END {print sum1/total}'`
-   t50=`egrep "^$i\W" $i/truseqCoverage.bed | awk -v total=$total '$7>=50 {sum1 += $8} END {print sum1/total}'`
-   t100=`egrep "^$i\W" $i/truseqCoverage.bed | awk -v total=$total '$7>=100 {sum1 += $8} END {print sum1/total}'`
-   t150=`egrep "^$i\W" $i/truseqCoverage.bed | awk -v total=$total '$7>=150 {sum1 += $8} END {print sum1/total}'`
-   t200=`egrep "^$i\W" $i/truseqCoverage.bed | awk -v total=$total '$7>=200 {sum1 += $8} END {print sum1/total}'`
+   	t0=`egrep "^$i\W" $i/truseqCoverage.bed | awk -v total=$total '$7==0 {sum1 += $8} END {print sum1/total}'`
+   	t1=`egrep "^$i\W" $i/truseqCoverage.bed | awk -v total=$total '$7>=1 {sum1 += $8} END {print sum1/total}'`
+   	t5=`egrep "^$i\W" $i/truseqCoverage.bed | awk -v total=$total '$7>=5 {sum1 += $8} END {print sum1/total}'`
+   	t10=`egrep "^$i\W" $i/truseqCoverage.bed | awk -v total=$total '$7>=10 {sum1 += $8} END {print sum1/total}'`
+   	t20=`egrep "^$i\W" $i/truseqCoverage.bed | awk -v total=$total '$7>=20 {sum1 += $8} END {print sum1/total}'`
+   	t50=`egrep "^$i\W" $i/truseqCoverage.bed | awk -v total=$total '$7>=50 {sum1 += $8} END {print sum1/total}'`
+   	t100=`egrep "^$i\W" $i/truseqCoverage.bed | awk -v total=$total '$7>=100 {sum1 += $8} END {print sum1/total}'`
+   	t150=`egrep "^$i\W" $i/truseqCoverage.bed | awk -v total=$total '$7>=150 {sum1 += $8} END {print sum1/total}'`
+   	t200=`egrep "^$i\W" $i/truseqCoverage.bed | awk -v total=$total '$7>=200 {sum1 += $8} END {print sum1/total}'`
 
-   awk -v chr=$i -v t0=$t0 -v t1=$t1 -v t5=$t5 -v t10=$t10 -v t20=$t20 -v t50=$t50 -v t100=$t100 -v t150=$t150 -v t200=$t200 'BEGIN {print chr "\t" t0 "\t" t1 "\t" t5 "\t" t10 "\t" t20 "\t" t50 "\t" t100 "\t" t150 "\t" t200}' >> truseqCoverage200X.txt
+   	awk -v chr=$i -v t0=$t0 -v t1=$t1 -v t5=$t5 -v t10=$t10 -v t20=$t20 -v t50=$t50 -v t100=$t100 -v t150=$t150 -v t200=$t200 'BEGIN {print chr "\t" t0 "\t" t1 "\t" t5 "\t" t10 "\t" t20 "\t" t50 "\t" t100 "\t" t150 "\t" t200}' >> truseqCoverage200X.txt
 
 done
 
@@ -42,19 +42,19 @@ for i in `find chr* -name "exoncoverage.bed" -printf "%h\n"`; do
 	BASENAME=`basename $CURRENT`
 	python  /home/yqin/Pipeline/Orion_QC/PIPELINE/DNA-seq-0.1.3/runOnExonCoverage.py $i $CURRENT
 
-	total=`egrep "^$i\W" $i/exoncoverage.bed | cut -f9 | uniq | awk '{sum1 += $1} END {print sum1}'`
-  t0=`egrep "^$i\W" $i/exoncoverage.bed | awk -v total=$total '$7==0 {sum1 += $8} END {print sum1/total}'`
-  t1=`egrep "^$i\W" $i/exoncoverage.bed | awk -v total=$total '$7>=1 {sum1 += $8} END {print sum1/total}'`
-  t5=`egrep "^$i\W" $i/exoncoverage.bed | awk -v total=$total '$7>=5 {sum1 += $8} END {print sum1/total}'`
-  t10=`egrep "^$i\W" $i/exoncoverage.bed | awk -v total=$total '$7>=10 {sum1 += $8} END {print sum1/total}'`
-  t20=`egrep "^$i\W" $i/exoncoverage.bed | awk -v total=$total '$7>=20 {sum1 += $8} END {print sum1/total}'`
-  t50=`egrep "^$i\W" $i/exoncoverage.bed | awk -v total=$total '$7>=50 {sum1 += $8} END {print sum1/total}'`
-  t100=`egrep "^$i\W" $i/exoncoverage.bed | awk -v total=$total '$7>=100 {sum1 += $8} END {print sum1/total}'`
-  t150=`egrep "^$i\W" $i/exoncoverage.bed | awk -v total=$total '$7>=150 {sum1 += $8} END {print sum1/total}'`
-  t200=`egrep "^$i\W" $i/exoncoverage.bed | awk -v total=$total '$7>=200 {sum1 += $8} END {print sum1/total}'`
+  	total=`egrep "^$i\W" $i/exoncoverage.bed | cut -f9 | uniq | awk '{sum1 += $1} END {print sum1}'`
+  	t0=`egrep "^$i\W" $i/exoncoverage.bed | awk -v total=$total '$7==0 {sum1 += $8} END {print sum1/total}'`
+  	t1=`egrep "^$i\W" $i/exoncoverage.bed | awk -v total=$total '$7>=1 {sum1 += $8} END {print sum1/total}'`
+  	t5=`egrep "^$i\W" $i/exoncoverage.bed | awk -v total=$total '$7>=5 {sum1 += $8} END {print sum1/total}'`
+  	t10=`egrep "^$i\W" $i/exoncoverage.bed | awk -v total=$total '$7>=10 {sum1 += $8} END {print sum1/total}'`
+  	t20=`egrep "^$i\W" $i/exoncoverage.bed | awk -v total=$total '$7>=20 {sum1 += $8} END {print sum1/total}'`
+  	t50=`egrep "^$i\W" $i/exoncoverage.bed | awk -v total=$total '$7>=50 {sum1 += $8} END {print sum1/total}'`
+  	t100=`egrep "^$i\W" $i/exoncoverage.bed | awk -v total=$total '$7>=100 {sum1 += $8} END {print sum1/total}'`
+  	t150=`egrep "^$i\W" $i/exoncoverage.bed | awk -v total=$total '$7>=150 {sum1 += $8} END {print sum1/total}'`
+  	t200=`egrep "^$i\W" $i/exoncoverage.bed | awk -v total=$total '$7>=200 {sum1 += $8} END {print sum1/total}'`
 
 
-  awk -v chr=$i -v t0=$t0 -v t1=$t1 -v t5=$t5 -v t10=$t10 -v t20=$t20 -v t50=$t50 -v t100=$t100 -v t150=$t150 -v t200=$t200 'BEGIN {print chr "\t" t0 "\t" t1 "\t" t5 "\t" t10 "\t" t20 "\t" t50 "\t" t100 "\t" t150 "\t" t200}' >> exonCoverage200X.txt
+  	awk -v chr=$i -v t0=$t0 -v t1=$t1 -v t5=$t5 -v t10=$t10 -v t20=$t20 -v t50=$t50 -v t100=$t100 -v t150=$t150 -v t200=$t200 'BEGIN {print chr "\t" t0 "\t" t1 "\t" t5 "\t" t10 "\t" t20 "\t" t50 "\t" t100 "\t" t150 "\t" t200}' >> exonCoverage200X.txt
 
 done
 
@@ -70,25 +70,23 @@ for i in `find chr* -name "refseqCoverage.bed" -printf "%h\n"`; do
 	BASENAME=`basename $CURRENT`
 	python  /home/yqin/Pipeline/Orion_QC/PIPELINE/DNA-seq-0.1.3/runOnRefSeqCoverage.py $i $CURRENT
 
-   total=`egrep "^$i\W" $i/refseqCoverage.bed | cut -f7 | uniq | awk '{sum1 += $1} END {print sum1}'`
-   t0=`egrep "^$i\W" $i/refseqCoverage.bed | awk -v total=$total '$5==0 {sum1 += $6} END {print sum1/total}'`
-   t1=`egrep "^$i\W" $i/refseqCoverage.bed | awk -v total=$total '$5>=1 {sum1 += $6} END {print sum1/total}'`
-   t5=`egrep "^$i\W" $i/refseqCoverage.bed | awk -v total=$total '$5>=5 {sum1 += $6} END {print sum1/total}'`
-   t10=`egrep "^$i\W" $i/refseqCoverage.bed | awk -v total=$total '$5>=10 {sum1 += $6} END {print sum1/total}'`
-   t20=`egrep "^$i\W" $i/refseqCoverage.bed | awk -v total=$total '$5>=20 {sum1 += $6} END {print sum1/total}'`
-   t50=`egrep "^$i\W" $i/refseqCoverage.bed | awk -v total=$total '$5>=50 {sum1 += $6} END {print sum1/total}'`
-   t100=`egrep "^$i\W" $i/refseqCoverage.bed | awk -v total=$total '$5>=100 {sum1 += $6} END {print sum1/total}'`
-   t150=`egrep "^$i\W" $i/refseqCoverage.bed | awk -v total=$total '$5>=150 {sum1 += $6} END {print sum1/total}'`
-   t200=`egrep "^$i\W" $i/refseqCoverage.bed | awk -v total=$total '$5>=200 {sum1 += $6} END {print sum1/total}'`
+   	total=`egrep "^$i\W" $i/refseqCoverage.bed | cut -f7 | uniq | awk '{sum1 += $1} END {print sum1}'`
+   	t0=`egrep "^$i\W" $i/refseqCoverage.bed | awk -v total=$total '$5==0 {sum1 += $6} END {print sum1/total}'`
+   	t1=`egrep "^$i\W" $i/refseqCoverage.bed | awk -v total=$total '$5>=1 {sum1 += $6} END {print sum1/total}'`
+   	t5=`egrep "^$i\W" $i/refseqCoverage.bed | awk -v total=$total '$5>=5 {sum1 += $6} END {print sum1/total}'`
+   	t10=`egrep "^$i\W" $i/refseqCoverage.bed | awk -v total=$total '$5>=10 {sum1 += $6} END {print sum1/total}'`
+   	t20=`egrep "^$i\W" $i/refseqCoverage.bed | awk -v total=$total '$5>=20 {sum1 += $6} END {print sum1/total}'`
+   	t50=`egrep "^$i\W" $i/refseqCoverage.bed | awk -v total=$total '$5>=50 {sum1 += $6} END {print sum1/total}'`
+   	t100=`egrep "^$i\W" $i/refseqCoverage.bed | awk -v total=$total '$5>=100 {sum1 += $6} END {print sum1/total}'`
+   	t150=`egrep "^$i\W" $i/refseqCoverage.bed | awk -v total=$total '$5>=150 {sum1 += $6} END {print sum1/total}'`
+   	t200=`egrep "^$i\W" $i/refseqCoverage.bed | awk -v total=$total '$5>=200 {sum1 += $6} END {print sum1/total}'`
 
-   awk -v chr=$i -v t0=$t0 -v t1=$t1 -v t5=$t5 -v t10=$t10 -v t20=$t20 -v t50=$t50 -v t100=$t100 -v t150=$t150 -v t200=$t200 'BEGIN {print chr "\t" t0 "\t" t1 "\t" t5 "\t" t10 "\t" t20 "\t" t50 "\t" t100 "\t" t150 "\t" t200}' >> refseqCoverage200X.txt
+   	awk -v chr=$i -v t0=$t0 -v t1=$t1 -v t5=$t5 -v t10=$t10 -v t20=$t20 -v t50=$t50 -v t100=$t100 -v t150=$t150 -v t200=$t200 'BEGIN {print chr "\t" t0 "\t" t1 "\t" t5 "\t" t10 "\t" t20 "\t" t50 "\t" t100 "\t" t150 "\t" t200}' >> refseqCoverage200X.txt
 done
-#===================================
+#=================================== SNP depth
+for i in `find chr* -name "snpCoverage.bed" -printf "%h\n"`; do
+	echo Calculating snpCoverage of $i
+        awk 'NR>=1' $i/snpCoverage.bed >> snpdepth.txt;
+        awk '{if ($1!="all") print $0}' $i/snpCoverage.bed >> snpdepth.txt;
 
-#SNP depth
-#for i in `find chr* -name "snpCoverage.bed" -printf "%h\n"`; do
-#	echo Calculating snpCoverage of $i
-        ##awk 'NR>=1' $i/snpCoverage.bed >> snpdepth.txt;
-#       awk '{if ($1!="all") print $0}' $i/snpCoverage.bed >> snpdepth.txt;
-
-#done
+done
